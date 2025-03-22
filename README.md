@@ -7,7 +7,7 @@ This is public snapshot of 234Ledger's source codes. 234Ledger is a news aggrega
 ## Directory Structure
 
 1. **adm**  
-    The admin panel front-end application made with Angular 18 and is meant to be hosted on its own domain.
+    The admin panel front-end application made with Angular 18 and is meant to be hosted on its own server.
 
 2. **site16**  
     The actual application made with Angular 16 and SSR. Also contains API endpoints for the admin panel.
@@ -21,7 +21,7 @@ This is public snapshot of 234Ledger's source codes. 234Ledger is a news aggrega
 
 ## Caution  
 
-Running this may require additional setups and processes which are not included in this public repository. This public snaption is preferred READ-ONLY.
+Running this may require additional setup and processes which are not included in this public repository. This public snaption is preferred READ-ONLY.
 
 ## Conclusion
 
