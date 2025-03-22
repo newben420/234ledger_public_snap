@@ -21,7 +21,7 @@ This is public snapshot of 234Ledger's source codes. 234Ledger is a news aggrega
 
 ## Caution  
 
-Running this may require additional setup and processes which are not included in this public repository. This public snaption is preferred READ-ONLY.
+Running this may require additional setup and processes which are not included in this public repository. This public snapshot is preferred "READ-ONLY".
 
 ## Conclusion
 
