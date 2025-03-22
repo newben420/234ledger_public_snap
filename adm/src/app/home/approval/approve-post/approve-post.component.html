@@ -1,0 +1,45 @@
+<app-table [config]="tableConfig"></app-table>
+
+<div *ngIf="showContents" class="w-100 h-100 position-fixed thx-bg-1 comments overflow-hidden">
+  <div class="w-100 h-00 overflow-hidden d-flex flex-column">
+    <div class="header w-100 thx-bg-2 overflow-hidden d-flex flex-row align-items-center justify-content-between px-2">
+      <h6 class="lead fs-5 thx-4 fw-normal p-0 m-0" translate>approve.post_details</h6>
+      <button (click)="exitContents()" class="bg-transparent border-0 fs5 text-danger">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+    <div class="body overflow-auto w-100 p-2">
+      <div class="w-100 overflow-auto horizon mx-auto mw my-2">
+        <div *ngIf="openedPostImageLink" class="mb-3 fs-6 lead fw-normal overflow-hidden">
+          <small translate class="d-block mb-2 text-success">
+            post.image
+          </small>
+          <div class="ps-3 overflow-hidden">
+            <button class="btn btn-sm btn-success" (click)="view(openedPostImageLink)"><i class="bi bi-eye-fill me-2"></i> <span translate>table.view</span></button>
+          </div>
+        </div>
+        <div *ngIf="openedPostDescription" class="mb-3 fs-6 lead fw-normal overflow-hidden">
+          <small translate class="d-block mb-1 text-success">
+            post.desc
+          </small>
+          <div class="ps-3 overflow-hidden thx-5">
+            {{openedPostDescription}}
+          </div>
+        </div>
+        <div class="fs-6 lead fw-normal overflow-hidden">
+          <small translate class="d-block mb-1 text-success">
+            post.content
+          </small>
+        </div>
+        <app-table [config]="contentsTableConfig"></app-table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="viewerShow" class="w-100 thx-bg-1 h-100 position-fixed" id="image">
+  <div class="w-100 h-100 position-relative">
+    <img [src]="viewerSRC" class="w-100 h-100 border-0">
+    <button (click)="toggleViewer()" class="position-absolute shadow-lg btn-sm btn-danger btn"><i class="bi bi-x-lg"></i></button>
+  </div>
+</div>

@@ -1,0 +1,182 @@
+<div class="position-fixed w-100 h-100 thx-bg-1 d-flex flex-column" id="edit">
+  <div class="header w-100 d-flex flex-row align-items-center justify-content-between overflow-hidden px-2">
+    <p class="lead m-0 fw-normal fs-5 p-0 thx-4" translate>{{isNew ? "post.new_post" : "post.edit_post"}}</p>
+    <button (click)="cancel(false)" class="border-0 bg-transparent p-2 text-danger">
+      <i class="bi bi-x-lg"></i>
+    </button>
+  </div>
+  <div class="body w-100 overflow-x-hidden overflow-y-auto">
+    <div class="mw mx-auto p-2 w-100">
+      <form #form="ngForm" (ngSubmit)="onSubmit(form.form.valid)">
+        <app-accordion [title]="'post.metadata'" [state]="true" [ico]="ico">
+          <div class="px-2 container-fluid m-0 p-0">
+            <div class="row m-0 p-0 mb-3">
+              <div class="col-sm-6 p-0 m-0 mb-3 mb-sm-0 pe-sm-3 overflow-hidden">
+                <label class="thx-4 text-nowrap mb-1 ps-1 lead fs-6 fw-normal" for="title">
+                  <small>
+                    {{'post.title' | translate}}
+                    <span class="text-danger">*</span>
+                  </small>
+                </label>
+                <input id="title"
+                  class="border border-1 border-secondaryx fs-6 p-2 text-dark fw-normal bg-light rounded w-100"
+                  maxlength="100" #title="ngModel" [(ngModel)]="post.title" (keyup)="slugifyTitle()"
+                  [pattern]="pattern.title" name="title" type="text" required />
+                <span *ngIf="title.dirty && title.invalid" class="ps-2 d-block text-danger fst-italic fs-6">
+                  <small>{{'post.title_err' | translate}}</small>
+                </span>
+              </div>
+              <div class="col-sm-6 p-0 m-0 overflow-hidden">
+                <label class="thx-4 text-nowrap mb-1 ps-1 lead fs-6 fw-normal" for="title_slug">
+                  <small>
+                    {{'post.slug' | translate}}
+                    <span class="text-danger">*</span>
+                  </small>
+                </label>
+                <input id="title_slug"
+                  class="border border-1 border-secondaryx fs-6 p-2 text-dark fw-normal bg-light w-100 rounded"
+                  maxlength="100" #slug="ngModel" [(ngModel)]="post.title_slug" [pattern]="pattern.slug"
+                  name="title_slug" type="text" required />
+                <span *ngIf="slug.dirty && slug.invalid" class="ps-2 d-block text-danger fst-italic fs-6">
+                  <small>{{'post.slug_err' | translate}}</small>
+                </span>
+              </div>
+            </div>
+            <div class="row m-0 p-0 mb-3">
+              <div class="col-sm-6 p-0 m-0 mb-3 mb-sm-0 pe-sm-3 overflow-hidden">
+                <label class="thx-4 text-nowrap mb-1 ps-1 lead fs-6 fw-normal" for="category">
+                  <small>
+                    {{'post.category' | translate}}
+                    <span class="text-danger">*</span>
+                  </small>
+                </label>
+                <select id="category"
+                  class="border border-1 border-secondaryx fs-6 p-2 text-dark fw-normal bg-light w-100 rounded"
+                  maxlength="100" #cat="ngModel" [(ngModel)]="post.category" name="category" required>
+                  <option value="">{{ 'post.select_cat' | translate}}</option>
+                  <option *ngFor="let c of catStuff()" [value]="c.id">{{c.title}}</option>
+                </select>
+                <span *ngIf="cat.dirty && cat.invalid" class="ps-2 d-block text-danger fst-italic fs-6">
+                  <small>{{'post.category_err' | translate}}</small>
+                </span>
+              </div>
+              <div class="col-sm-6 p-0 m-0 overflow-hidden">
+                <label class="thx-4 text-nowrap mb-1 ps-1 lead fs-6 fw-normal" for="description">
+                  <small>
+                    {{'post.desc' | translate}}
+                  </small>
+                </label>
+                <input id="description"
+                  class="border border-1 border-secondaryx fs-6 p-2 text-dark fw-normal bg-light rounded w-100"
+                  maxlength="255" #desc="ngModel" [(ngModel)]="post.description" name="description" type="text" />
+              </div>
+            </div>
+            <div class="row m-0 p-0 mb-3">
+              <div class="col-sm-10 p-0 m-0 mb-3 mb-sm-0 pe-sm-3 overflow-hidden">
+                <label class="thx-4 text-nowrap mb-1 ps-1 lead fs-6 fw-normal" for="imagei">
+                  <small>
+                    {{'post.image' | translate}}
+                  </small>
+                </label>
+                <select id="imagei"
+                  class="border border-1 border-secondaryx fs-6 p-2 text-dark fw-normal bg-light w-100 rounded"
+                  maxlength="100" #img="ngModel" [(ngModel)]="post.image" name="image">
+                  <option value="">{{ 'post.select_img' | translate}}</option>
+                  <option *ngFor="let i of imgStuff()" [value]="i.id">{{i.id}} - {{i.title}}</option>
+                </select>
+              </div>
+              <div class="col-sm-2 p-0 m-0 overflow-hidden">
+                <div class="w-100 h-100 d-flex flex-row align-items-end justify-content-end">
+                  <button (click)="view(post.image!)" [disabled]="!post.image" class="btn btn-success w-100 hxh">
+                    <i class="bi bi-eye-fill me-2"></i>
+                    <span>View</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </app-accordion>
+        <br>
+      </form>
+      <app-accordion [title]="'post.content'" [state]="true" [ico]="ico">
+        <div class="px-2">
+          <button (click)="addSection()" class="btn btn-success btn-sm mb-3"><i class="bi bi-plus me-2"></i><span
+              translate>post.add_section</span></button>
+          <p *ngIf="content.length == 0"
+            class="lead fs-6 p-0 m-0 text-center p-5 py-2 fst-italic text-secondary overflow-hidden">
+            <small translate>post.no_content</small>
+          </p>
+          <div *ngFor="let s of usedSections" class="section rounded border-x border border-1 mb-2">
+            <div
+              class="section_header p-2 w-100 border-bottom border-x overflow-hidden d-flex flex-row align-items-center justify-content-between">
+              <h5 class="m-0 p-0 fs-6 thx-4 display-6 fw-bold overflow-hidden">{{ s.title }}</h5>
+              <div class="overflow-hidden">
+                <button (click)="addContentToSection(s.id)" class="btn-sm btn btn-success me-2"><span
+                    translate>post.add_content</span></button>
+                <button (click)="removeSection(s.id)" class="btn-sm btn btn-danger"><span
+                    translate>post.remove_section</span></button>
+              </div>
+            </div>
+            <div class="section_body p-2 pb-0">
+              <div *ngFor="let c of filterContent(s.id); index as i"
+                class="content w-100 overflow-hidden border border-1 border-x rounded mb-2">
+                <div
+                  class="content_header w-100 p-2 border-bottom border-x overflow-hidden d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 p-0 fs-6 thx-4 display-6 fw-normal overflow-hidden">{{(i + 1)}}.</h6>
+                  <button (click)="removeContent(s.id, i)" class="btn-sm btn btn-danger"><span
+                      translate>post.remove_content</span></button>
+                </div>
+                <div class="content_body p-2">
+                  <div class="container-fluid m-0 p-0">
+                    <div class="row m-0 p-0 mb-2">
+                      <div class="col-sm-10 p-0 m-0 mb-3 mb-sm-0 pe-sm-3 overflow-hidden">
+                        <span class="thx-4 text-nowrap mb-1 ps-1 lead fs-6 fw-normal">
+                          <small>
+                            {{'post.body' | translate}}
+                            <span class="text-danger">*</span>
+                          </small>
+                        </span>
+                        <quill-editor [maxLength]="quillMaxLength" [id]="'s'+s.id+'i'+i"
+                          (onContentChanged)="quillOnChangeHandler($event, s.id, i)" [modules]="quillEditorModules"
+                          class="w-100 bg-light rounded overflow-hidden" [name]="'s'+s.id+'i'+i" [(ngModel)]="c.body">
+                        </quill-editor>
+                      </div>
+                      <div class="col-sm-2 p-0 m-0 overflow-hidden">
+                        <span class="thx-4 text-nowrap mb-1 ps-1 lead fs-6 fw-normal">
+                          <small>
+                            {{'post.visibility' | translate}}
+                          </small>
+                        </span>
+                        <br>
+                        <ng-toggle [value]="toBool(c.visibility)" [color]="{
+                            unchecked: colors[3],
+                            checked: colors[5],
+                          }" (change)="updateContentVisibility(s.id, i)" [speed]="swicthSpeed" [width]="swicthWidth"
+                          [height]="swicthHeight" [switchColor]="colors[2]"></ng-toggle>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-accordion>
+      <br>
+
+    </div>
+  </div>
+  <div class="footer w-100 d-flex flex-row align-items-center justify-content-center overflow-hidden">
+    <button [disabled]="form.form.invalid" (click)="submit(form.form.valid, false)" class="btn btn-success me-2 btn-sm" translate>buttons.publish</button>
+    <button [disabled]="form.form.invalid" (click)="submit(form.form.valid, true)" class="btn btn-success me-2 btn-sm" translate>buttons.save_draft</button>
+    <button (click)="cancel(true)" class="btn btn-secondary btn-sm" translate>buttons.cancel</button>
+  </div>
+</div>
+
+<div *ngIf="viewerShow" class="w-100 thx-bg-1 h-100 position-fixed" id="image">
+  <div class="w-100 h-100 position-relative">
+    <img [src]="viewerSRC" class="w-100 h-100 border-0">
+    <button (click)="toggleViewer()" class="position-absolute shadow-lg btn-sm btn-danger btn"><i
+        class="bi bi-x-lg"></i></button>
+  </div>
+</div>

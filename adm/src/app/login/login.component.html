@@ -1,0 +1,32 @@
+<app-header></app-header>
+
+<div class="maxw mx-auto my-5 p-2">
+  <div class="p-4 px-3 w-100 mt-3 shade-bg rounded overflow-hidden">
+    <h1 class="display-6 thx-5 m-0 p-0 mb-4">{{"login.title" | translate}}</h1>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form.form.valid)">
+      <div class="formInput my-2 mb-4 w-100 overflow-hidden">
+        <div class="formInputInner bg-light rounded w-100 overflow-hidden d-flex flex-row align-items-center">
+          <div class="icon overflow-hidden text-secondary d-flex flex-row align-items-center justify-content-center"><i
+              class="bi bi-person-fill"></i></div>
+          <input class="input border-0 fs-6 py-2 text-dark fw-normal pe-2 bg-transparent" maxlength="100" #username="ngModel" [(ngModel)]="model.username"
+            [pattern]="pattern.general" name="username" type="text" placeholder="{{'login.user' | translate}}" required />
+        </div>
+        <span *ngIf="username.dirty && username.invalid" class="formError ps-2 text-danger fst-italic fs-6">
+          <small>{{'login.user_req' | translate}}</small>
+        </span>
+      </div>
+      <div class="formInput my-2 mb-4 w-100 overflow-hidden">
+        <div class="formInputInner bg-light rounded w-100 overflow-hidden d-flex flex-row align-items-center">
+          <div class="icon overflow-hidden text-secondary d-flex flex-row align-items-center justify-content-center"><i
+              class="bi bi-key-fill"></i></div>
+          <input class="input border-0 fs-6 text-dark fw-normal pe-2 py-2 bg-transparent" maxlength="100" #password="ngModel" [(ngModel)]="model.password"
+            [pattern]="pattern.general" name="password" type="password" placeholder="{{'login.pass' | translate}}" required />
+        </div>
+        <span *ngIf="password.dirty && password.invalid" class="formError ps-2 text-danger fst-italic fs-6">
+          <small>{{'login.pass_req' | translate}}</small>
+        </span>
+      </div>
+      <button [disabled]="!form.form.valid" type="submit" class="btn btn-success px-4">{{'login.submit' | translate}}</button>
+    </form>
+  </div>
+</div>

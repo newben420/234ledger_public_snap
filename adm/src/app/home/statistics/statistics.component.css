@@ -1,0 +1,27 @@
+.chart{
+  overflow: hidden !important;
+}
+
+@media only screen and (max-width: 500px) {
+  .chart {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+  }
+}
+
+@media only screen and (min-width: 501px) {
+  .chart {
+    width: 50%;
+    max-width: 50%;
+    min-width: 50%;
+  }
+}
+
+@media only screen and (min-width: 1001px) {
+  .chart {
+    width: calc(100% / 3);
+    min-width: calc(100% / 3);
+    max-width: calc(100% / 3);
+  }
+}

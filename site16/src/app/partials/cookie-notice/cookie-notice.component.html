@@ -1,0 +1,12 @@
+<div *ngIf="!remove"
+  class="position-fixed {{show ? 'active': ''}} w-100 h-auto overflow-x-hidden overf cook bg-success">
+  <div class="w-100 inner-cook p-2 py-3 mw mx-auto text-center">
+    <p class="m-0 p-0 thx-1 fs-6 fw-normal" [translateParams]="{
+      accept: ('notice.accept' | translate),
+      terms: ('footer.terms' | translate),
+      policy: ('footer.privacy' | translate),
+      }" translate="notice.by">
+    </p>
+    <button (click)="accept()" class="btn btn-{{isDark ? 'dark' : 'light'}} btn-sm mt-2"><span translate>notice.accept</span></button>
+  </div>
+</div>

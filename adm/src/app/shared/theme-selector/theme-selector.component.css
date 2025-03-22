@@ -1,0 +1,17 @@
+.ik {
+  z-index: 1;
+  top: 0px;
+  bottom: 0px;
+  margin: auto;
+  transition: all 200ms linear;
+}
+
+.checked {
+  right: 7px !important;
+  font-size: 17px;
+}
+
+.unchecked {
+  left: 8px !important;
+  font-size: 14px;
+}

@@ -1,0 +1,136 @@
+{
+  "alerts": {
+    "success": "SUCCESS",
+    "error": "ERROR",
+    "warning": "WARNING",
+    "info": "INFO"
+  },
+  "buttons": {
+    "ok": "OK",
+    "no": "No",
+    "yes": "Yes",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save"
+  },
+  "prompts": {
+    "oc": "Cancelled!",
+    "def_error": "Invalid! Please follow provided instruction.",
+    "no_change": "No changes made.",
+    "sure": "Are you sure?",
+    "cookies_enable": "Please enable cookies to proceed.",
+    "copy": "Copied to clipboard."
+  },
+  "ins": {
+    "file_upload": "Drop or click to select file.",
+    "def": "Please follow instructions.",
+    "upload": "Please upload {{figure}} {{category}} file of size of at most {{size}}KB",
+    "minmax": "Please enter a number between {{min}} and {{max}} inclusive.",
+    "pat": "Pattern mismatch.",
+    "loob": "Input length out of bound.",
+    "req": "Input is required."
+  },
+  "upload": {
+    "nofile": "File could not be obtained, please try again.",
+    "pref": "Preferrably, by clicking the upload icon.",
+    "exceed": "File size exceeds maximum limit of {{size}}KB",
+    "type": "Only {{format}} File formats are allowed."
+  },
+  "server_responses": {
+    "errors": {
+      "default": "A server error was encountered. please try again.",
+      "no_conn": "A server-side error was encountered. Please check your connection and try again.",
+      "unknown_response": "An unknown exception occured.",
+      "record_not_found": "Record not found!",
+      "access_denied": "ACCESS DENIED",
+      "server": "A server error was encountered.",
+      "wrong_request": "There is an error in your request.",
+      "not_published": "This post is currently not published. Please try again later."
+    },
+    "success": {
+      "default": "Operation completed successfully.",
+      "email": "Thank you for joining our newsletters!",
+      "comment": "Thank you for your comment! It will be visible here once approved."
+    }
+  },
+  "header": {
+    "home": "Home",
+    "categories": "Categories",
+    "sections": "Topics",
+    "about": "About Us",
+    "menu": "Show Navigation",
+    "search": "Search"
+  },
+  "footer":  {
+    "quick": "Quick Links",
+    "contact": "Contact Us",
+    "legal": "Legal",
+    "terms": "Terms of Use",
+    "privacy": "Privacy Policy",
+    "social": "Get in Touch",
+    "all": "All rights reserved."
+  },
+  "socials": {
+    "follow": "Follow on",
+    "subscribe": "Subscribe on",
+    "join": "Join Channel on",
+    "mail": "Send an "
+  },
+  "carousel": {
+    "informed": "Stay Informed",
+    "ahead": "Stay Ahead",
+    "pulse": "The Pulse of Nigeria",
+    "p1": "Your ultimate record of Nigeria's trends, moments, and history.",
+    "p2": "Abridged, verified daily news from all topics, in one place."
+  },
+  "news": {
+    "heading": "Join our Newsletters",
+    "text": "Be the first to receive updates from us when you sign up for our newsletters.",
+    "btn": "Join Now",
+    "choose": "Choose Frequency",
+    "choose_click": "Click to choose",
+    "choose_ins": "How often would you like to receive updates from us?",
+    "email": "Email",
+    "email_ins": "Please enter a valid email address."
+  },
+  "nothing": "Nothing to show for now... Please check back later.",
+  "be_the_first": "Be the first to make a comment",
+  "no_more": "No more posts to load.",
+  "no_more_c": "No more comments to load.",
+  "home": {
+    "latest": "Latest Posts",
+    "more": "Load More",
+    "categories": "Browse by Categories",
+    "sections": "Browse by Topics"
+  },
+  "post": {
+    "related": "Recommended For You",
+    "preference": "Preferred Topics",
+    "name": "Name",
+    "name_ins": "Leave it empty to make an anonymous comment. No special characters allowed.",
+    "comment": "Comment *",
+    "comment_ins": "Please comment responsibly.",
+    "contact": "Email *",
+    "contact_ins": "Please enter your email address should in case we needs to get back to you.",
+    "default_commenter": "Anonymous",
+    "comments": "Comments",
+    "make_comment": "Make a Comment",
+    "lm": "Last Modified"
+  },
+  "notice": {
+    "accept": "Accept",
+    "by": "By clicking \"{{accept}}\" or continuing to use our site, you agree to our Website's {{policy}} and {{terms}}."
+  },
+  "search": {
+    "min": "Please write at least 3 non-whitespace characters.",
+    "ph": "Search...",
+    "post": "Post",
+    "category": "Category",
+    "section": "Topic",
+    "no": "No result found! Please try a different search query.",
+    "back": "Go Back",
+    "search": "Search",
+    "clear": "Clear Input"
+  },
+  "btt": "Back to top"
+}

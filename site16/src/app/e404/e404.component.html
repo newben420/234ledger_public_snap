@@ -1,0 +1,11 @@
+<div class="position-fixed w-100 h-100 bdx overflow-hidden">
+  <div
+    class="w-100 h-100 position-relative overflow-hidden p-md-5 flex-column p-2 d-flex flex-row align-items-center justify-content-center">
+    <div class="bg-xx w-100 h-100 position-absolute"></div>
+    <div *ngIf="isDark" class="dark w-100 h-100 position-absolute"></div>
+  <div *ngIf="!isDark" class="light w-100 h-100 position-absolute"></div>
+    <h1 class="m-0 p-0 display-4 thx-5">404: NOT FOUND</h1>
+    <p class="lead thx-5 fs-6 m-0 p-0 my-2">Oops... The link you followed leads nowhere.</p>
+    <a href="/" class="btn btn-success mt-2"><i class="bi bi-emoji-smile-fill me-2"></i><span>Start again</span></a>
+  </div>
+</div>

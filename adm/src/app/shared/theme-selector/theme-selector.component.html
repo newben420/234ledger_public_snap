@@ -1,0 +1,12 @@
+<div class="position-relative overflow-hidden d-flex align-items-start justify-content-center flex-row" [style]="{width: (width+0)+'px', height: (height+4)+'px', background: '', padding: '0px'}">
+  <ng-toggle [value]="isDark" [color]="{
+    unchecked: colors[2],
+    checked: colors[4],
+  }" [speed]="speed" [labels]="{
+    checked: darkLabel,
+    unchecked: lightLabel
+  }" [switchColor]="colors[1]" [width]="width" [height]="height" (change)="setTheme(!isDark)"></ng-toggle>
+  <div class="ik {{isDark ? 'unchecked thx-4' : 'checked thx-0'}} position-absolute d-flex align-items-center h-100 justify-content-center flex-row">
+    <i  class="bi bi-{{isDark ? 'moon-stars-fill' : 'brightness-high-fill'}}"></i>
+  </div>
+</div>

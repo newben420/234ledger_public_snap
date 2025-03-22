@@ -1,0 +1,20 @@
+<app-table [config]="tableConfig"></app-table>
+
+<div *ngIf="showComments" class="w-100 h-100 position-fixed thx-bg-1 comments overflow-hidden">
+  <div class="w-100 h-00 overflow-hidden d-flex flex-column">
+    <div class="header w-100 thx-bg-2 overflow-hidden d-flex flex-row align-items-center justify-content-between px-2">
+      <h6 class="lead fs-5 thx-4 fw-normal p-0 m-0" translate>post.manage_comments</h6>
+      <button (click)="exitComments()" class="bg-transparent border-0 fs5 text-danger">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+    <div class="body overflow-x-hidden overflow-y-auto w-100 p-2">
+      <div class="w-100  mx-auto mw my-2">
+        <div *ngIf="commentsTableConfig.data.length > 0" class="d-flex align-items-center justify-content-end w-100 overflow-hidden py-2">
+          <button (click)="deleteAllComments()" class="btn btn-danger btn-sm"><i class="bi bi-trash me-2"></i> <span>Delete All Comments</span></button>
+        </div>
+        <app-table [config]="commentsTableConfig"></app-table>
+      </div>
+    </div>
+  </div>
+</div>

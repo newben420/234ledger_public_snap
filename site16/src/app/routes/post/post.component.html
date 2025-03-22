@@ -1,0 +1,103 @@
+<section class="mw mx-auto my-5 w-100 p-2 p-md-1">
+  <div class="container-fluid m-0 p-0">
+    <div class="row m-0 p-0">
+      <main class="col-md-9 m-0 p-2">
+        <figure *ngIf="post.image" class="m-0 mb-2 p-0 w-100 fx">
+          <img src="{{post.image || PDI}}" (error)="post.image = PI" alt="{{post.image_title || post.title}}"
+            class="w-100 h-100">
+        </figure>
+        <app-breadcrumb [items]="breadItems"></app-breadcrumb>
+        <article class="w-100 m-0 p-0 overflow-hidden">
+          <h1 class="thx-5 m-0 p-0 display-5 fw-normal text-start  text-md-start">{{title}}</h1>
+          <p
+            class="m-0 mb-3 d-block p-0 fs-6x thx-3 flex-wrap d-flex flex-row align-items-center justify-content-start">
+            <i class="bi bi-person-circle me-2 fs-6"></i> <strong class="d-inlne m-0 p-0">{{authorName}}</strong>
+            <i class="bi bi-clock fs-6 mx-2"></i> <time [dateTime]="SEOD(post.timestamp)"
+              class="d-inline fw-bold m-0 p-0">{{post.timestamp}}</time>
+          </p>
+          <p
+            class="m-0 mb-3 d-block p-0 fs-6x thx-3 flex-wrap d-flex flex-row align-items-center justify-content-start">
+            {{ 'post.lm' | translate }}: <time [dateTime]="SEOD(post.last_modified)"
+              class="d-inline ms-2 fw-bold m-0 p-0">{{post.last_modified}}</time>
+          </p>
+          <app-share></app-share>
+          <section class="m-0 p-0 mt-2 mb-4 overflow-hidden pe-md-3" *ngFor="let s of usedSections">
+            <h2 class="m-0 p-0 fs-5 mb-2 mt-2">
+              <span class="inline-block fs-6 p-2 px-3 rounded bg-success fw-normal thx-1 ">{{s.title}}</span>
+            </h2>
+            <ul class="m-0 content lead mt-3">
+              <li class="thx-6" [innerHTML]="c.body | sanitizeHtml" *ngFor="let c of filterContent(s.id); index as i">
+              </li>
+            </ul>
+          </section>
+          <p *ngIf="usedSections.length == 0" class="thx-3 fs-6 m-0 p-0 text-md-start my-3 text-center">
+            <small translate><i class="bi bi-emoji-wink-fill me-2"></i> {{ 'nothing' | translate }}</small>
+          </p>
+        </article>
+        <app-share></app-share>
+      </main>
+      <aside class="col-md-3 m-0 p-2">
+        <section>
+          <h2 class="m-0 p-0 mb-2 rounded thx-5 fw-normal h5 text-center text-md-start thx-bg-2 p-2" translate>
+            post.preference
+          </h2>
+          <div *ngFor="let s of sections"
+            class="w-100 px-1 d-flex mb-2 flex-row align-items-center justify-content-start">
+            <input (change)="savePref()" [name]="s.title_slug" [id]="s.title_slug" [(ngModel)]="s.pref" type="checkbox"
+              name="" id="" class="me-2">
+            <p class="m-0 p-0 text-success {{s.pref ? 'opacity-100' : 'opacity-50'}} fs-6 fw-normal">{{s.title}}</p>
+          </div>
+        </section>
+        <section *ngIf="related.length > 0">
+          <h2 class="m-0 mt-4 p-0 mb-2 rounded thx-5 fw-normal h5 text-center text-md-start thx-bg-2 p-2" translate>
+            post.related
+          </h2>
+          <article *ngFor="let i of related" class="m-0 ps-md-2 p-0 mb-4">
+            <a href="/post/{{i.slug}}" class="w-100 overflow-hidden">
+              <h3 class="m-0 p-0 text-success fs-5 fw-bold">{{i.title}}</h3>
+              <p class="m-0 p-0">
+                <time [dateTime]="SEOD(i.timestamp)" class="m-0 p-0 thx-3 fs-6x">{{i.timestamp}}</time>
+              </p>
+            </a>
+          </article>
+        </section>
+      </aside>
+    </div>
+    <hr class="thx-3">
+    <div class="row m-0 p-0">
+      <section class="m-0 p-2 col-md-9 overflow-hidden">
+        <h2 class="m-0 p-0 thx-5 h4 fw-normal mb-2" translate>post.comments</h2>
+        <div *ngFor="let c of comments" class="d-flex mb-4 flex-row align-items-start justify-content-start">
+          <div class="conmment-img">
+            <i class="bi bi-person-circle fs-1 thx-3 me-2"></i>
+          </div>
+          <div class="comment-det">
+            <h3 class="m-0 p-0 text-success fs-6 fw-bold mb-1">{{c.maker || ('post.default_commenter' | translate)}}
+            </h3>
+            <p class="m-0 p-0 thx-5 fs-6 lead" [innerHTML]="alterNewLine(c.stuff)"></p>
+          </div>
+        </div>
+        <p *ngIf="comments.length == 0" class="thx-3 fs-6 m-0 p-0 ps-md-3 py-2 text-md-start text-center">
+          <small translate><i class="bi bi-emoji-wink-fill me-2"></i> {{ 'be_the_first' | translate }}</small>
+        </p>
+        <div class="mt-2">
+          <button (click)="loadComments(true)" [disabled]="isLoading" *ngIf="comments.length > 0 && !endOfComments"
+            class="btn btn-success aslign-self-center me-2 mb-2">
+            <div *ngIf="isLoading" class="spinner-border thx-5 spinner-border-sm me-2"></div><i *ngIf="!isLoading"
+              class="bi bi-plus-lg me-2"></i><span translate>home.more</span>
+          </button>
+          <button (click)="makeComment()" class="btn mb-2 btn-success"><i class="bi bi-chat-fill me-2"></i><span
+              translate>post.make_comment</span></button>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<section>
+  <app-news></app-news>
+</section>
+
+<app-footer></app-footer>
+
+<app-btt></app-btt>

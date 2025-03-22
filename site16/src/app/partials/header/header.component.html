@@ -1,0 +1,51 @@
+<header class="thx-bg-1">
+  <div class="header-top">
+    <div class="header-left">
+      <app-brand [config]="{
+        type: 'logo',
+        height: 30,
+      }"></app-brand>
+    </div>
+    <div class="header-right">
+      <button (click)="toggleMenu()" class="menu-btn border-0 bg-transparent p-0 thx-3"><i
+          class="bi bi-list me-1"></i> <span class="visually-hidden" translate>header.menu</span></button>
+    </div>
+  </div>
+  <div class="header-bottom {{menu ? 'active' : ''}}">
+    <div class="header-bottom-cover thx-bg-1">
+      <nav>
+        <ul class="outer-ul">
+          <li class="outer-li {{url == '/' ? 'active' : ''}}"><a class="thx-4" href="/" translate>header.home</a></li>
+          <li class="outer-li">
+            <span (click)="toggleAccord('cat')" class="thx-4 span" translate>header.categories</span>
+            <i (click)="toggleAccord('cat')"
+              class="bi accordion-icon thx-3 bi-caret-{{accord['cat'] ? 'down' : 'up'}}-fill"></i>
+            <ul class="inner-ul thx-bg-1 {{accord['cat'] ? 'active' : ''}}">
+              <li class="inner-li {{url == ('/category/'+i.title_slug) ? 'active' : ''}}" *ngFor="let i of categories">
+                <a class="thx-4" href="/category/{{i.title_slug}}">{{i.title}}
+                  <!-- <span *ngIf="i.post_count > 0"
+                    class="badge ms-1 thx-1 thx-bg-2 rounded-circle">{{abbr(i.post_count)}}</span> -->
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="outer-li">
+            <span (click)="toggleAccord('sec')" class="thx-4 span" translate>header.sections</span>
+            <i (click)="toggleAccord('sec')"
+              class="bi accordion-icon thx-3 bi-caret-{{accord['sec'] ? 'down' : 'up'}}-fill"></i>
+            <ul class="inner-ul thx-bg-1 {{accord['sec'] ? 'active' : ''}}">
+              <li class="inner-li {{url == ('/category/'+i.title_slug) ? 'active' : ''}}" *ngFor="let i of sections"><a
+                  class="thx-4" href="/section/{{i.title_slug}}">{{i.title}}</a></li>
+            </ul>
+          </li>
+          <li class="outer-li {{url == '/about' ? 'active' : ''}}"><a class="thx-4" href="/about" translate>header.about</a></li>
+        </ul>
+      </nav>
+      <div class="header-btns">
+        <button (click)="search()" class="bg-transparent border-0 thx-4"><i class="bi bi-search"></i> <span class="visually-hidden" translate>header.search</span></button>
+        <app-theme-selector></app-theme-selector>
+      </div>
+    </div>
+    <div (click)="toggleMenu()" class="nav-backdrop"></div>
+  </div>
+</header>

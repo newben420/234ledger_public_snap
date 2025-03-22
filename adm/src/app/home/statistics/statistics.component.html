@@ -1,0 +1,20 @@
+<div class="w-100 overflow-hidden pt-2 ps-2">
+  <button (click)="loadStats()" class="btn btn-sm btn-success"><i class="bi bi-arrow-clockwise me-2"></i><span
+      translate>stats.refresh</span></button>
+</div>
+<div class="w-100 overflow-hidden pt-2 d-flex flex-wrap flex-row align-items-stretch justify-content-center">
+  <div *ngFor="let n of numerical, index as i" class="chart p-2 mb-2">
+    <div class="inner-chart border-x border w-100 rounded overflow-hidden rounded p-3 shadow-sm">
+      <h6 class="m-0 p-0 w-100 text-center lead fs-6 fw-bold thx-4 mb-2">{{'stats.n'+[i] | translate}}</h6>
+      <p class="m-0 p0 display-5 thx-5 text-nowrap overflow-hidden text-center">{{ n }}</p>
+    </div>
+  </div>
+  <div *ngFor="let n of data; index as i" class="chart p-2 mb-2">
+    <div class="inner-chart border-x border w-100 rounded overflow-hidden rounded p-3 shadow-sm h-100">
+      <h6 class="m-0 p-0 w-100 text-center lead fs-6 fw-bold thx-4 mb-2">{{'stats.c'+[i] | translate}}</h6>
+      <canvas *ngIf="data[i].length > 0" baseChart [options]="chartOpts" [datasets]="getData(i)" [labels]="label[i]"
+        [type]="'doughnut'"></canvas>
+      <p *ngIf="data[i].length == 0" class="m-0 p-0 text-center m-3 thx-3"><small translate>stats.no_data</small></p>
+    </div>
+  </div>
+</div>

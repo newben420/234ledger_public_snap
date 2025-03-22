@@ -1,0 +1,15 @@
+<div (click)="toggle()" class="header rounded cursor-div thx-bg-1 mb-1 w-100 py-1 px-3 rounded border-0 overflow-hidden d-flex flex-row align-items-center justify-content-between">
+  <div class="d-flex justify-content-start align-items-center overflow-hidden">
+    <i *ngIf="ico.cl" class="{{ico.cl}} thx-3 profile-icon" [style]="{fontSize: ico.fs}"></i>
+    <p class="p-0 m-0 ps-2 thx-4 fs-6 {{!ico.cl ? 'fw-bold' : 'fw-normal'}} text-overflow-ellipsis text-smaller typeset text-truncate" translate>{{title}}</p>
+  </div>
+    <div class="p-1">
+        <i class="bi opacity-75 bi-caret-{{state ? 'down' : 'up'}}-fill thx-4"></i>
+    </div>
+</div>
+<div [@openClose]="state ? 'open' : 'close'" class="body overauto w-100 mb-2 rounded">
+    <div class="overhide w-100">
+        <ng-content></ng-content>
+    </div>
+</div>
+<div class="mb-2"></div>

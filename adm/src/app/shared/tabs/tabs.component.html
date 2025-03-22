@@ -1,0 +1,11 @@
+<div class="header w-100 d-flex flex-row flex-wrap align-items-start justify-content-start pt-3 overhide">
+  <button *ngFor="let tab of tabs; index as i" (click)="navTo(tab.path, i)" class="tab-head border-0 p-2 px-3 fs-6 fw-normal rounded-5 me-3 mb-3 {{
+      tab.active ? 'thx-bg-5 thx-1' : 'bg-transparent thx-5'
+    }}">
+    <span class="" translate>{{ tab.title }}</span> <span *ngIf="tab.badge && tab.badge != '0'"
+      class="badge t1">{{tab.badge}}</span>
+  </button>
+</div>
+<div class="w-100 overhide pb-3">
+  <ng-content></ng-content>
+</div>

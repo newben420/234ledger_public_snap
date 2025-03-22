@@ -1,0 +1,9 @@
+<app-table [config]="tableConfig"></app-table>
+
+
+<div *ngIf="viewerShow" class="w-100 thx-bg-1 h-100 position-fixed" id="image">
+  <div class="w-100 h-100 position-relative">
+    <img [src]="viewerSRC" class="w-100 h-100 border-0">
+    <button (click)="toggleViewer()" class="position-absolute shadow-lg btn-sm btn-danger btn"><i class="bi bi-x-lg"></i></button>
+  </div>
+</div>

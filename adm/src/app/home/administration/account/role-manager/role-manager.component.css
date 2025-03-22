@@ -1,0 +1,21 @@
+#cont{
+  left: 0px;
+  top: 0px;
+  z-index: 10;
+}
+
+.header{
+  height: 50px;
+}
+
+.footer{
+  height: 50px;
+}
+
+.body{
+  height: calc(100% - 100px);
+}
+
+.mw{
+  max-width: 500px;
+}

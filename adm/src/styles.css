@@ -1,0 +1,108 @@
+@import './../node_modules/quill/dist/quill.snow.css';
+
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+
+/* .formInputInner{} */
+.formInputInner .icon {
+  width: 40px;
+}
+
+.formInputInner .input {
+  width: calc((100% - 40px));
+}
+
+.cursorx {
+  cursor: pointer;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #f8f9fa inset;
+  /* set the background color */
+  box-shadow: 0 0 0px 1000px #f8f9fa inset;
+  -webkit-text-fill-color: #212529;
+  /* set the text color */
+  transition: background-color 5000s ease-in-out 0s;
+  /* prevents sudden color changes */
+}
+
+/* scrollbar classes */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 0px;
+}
+
+::-moz-scrollbar {
+  width: 10px;
+  height: 0px;
+}
+
+::-o-scrollbar {
+  width: 10px;
+  height: 0px;
+}
+
+.horizon::-webkit-scrollbar {
+  height: 10px !important;
+}
+
+.horizon::-moz-scrollbar {
+  height: 10px !important;
+}
+
+.horizon::-o-scrollbar {
+  height: 10px !important;
+}
+
+
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(200, 200, 200, 0.7);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(200, 200, 200, 0.9);
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.typeset {
+  letter-spacing: 1px;
+  word-spacing: 3.5px;
+}
+
+.border-secondaryx {
+  border-color: rgba(125, 125, 125, 0.6) !important;
+  height: 40px;
+}
+
+.hxh{
+  height: 40px;
+}
+
+.border-x {
+  border-color: rgba(125, 125, 125, 0.4) !important;
+}

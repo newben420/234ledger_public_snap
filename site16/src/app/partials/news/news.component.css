@@ -1,0 +1,28 @@
+.bgz {
+  z-index: -1;
+  top: 0px;
+  background-image: url('/assets/img/chairs.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+  left: 0px;
+}
+
+.dark {
+  z-index: -1;
+  top: 0px;
+  left: 0px;
+  background: rgba(23, 27, 31, 0.7);
+}
+
+.light {
+  z-index: -1;
+  top: 0px;
+  left: 0px;
+  background: rgba(223, 227, 231, 0.5);
+}
+
+@media only screen and (max-width: 767px) {
+  .mw{
+    width: 100% !important;
+  }
+}

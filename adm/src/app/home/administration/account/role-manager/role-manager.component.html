@@ -1,0 +1,18 @@
+<div *ngIf="show" class="w-100 thx-bg-1 h-100 position-fixed overflow-hidden" id="cont">
+  <div class="w-100 h-100 overflow-hidden d-flex flex-column">
+    <div class="header d-flex flex-row align-items-center justify-content-center px-2 w-100 overflow-hidden">
+      <p class="m-0 p-0 lead fw-normal thx-5"><span translate>admin.assign_modules</span> <span *ngIf="config.username">
+          (&#64;<span>{{config.username}}</span>)</span></p>
+    </div>
+    <div class="body px-2 thx-bg-2 w-100 overflow-x-hidden overflow-y-auto d-flex flex-row align-items-center justify-content-center">
+      <div class="mw text-center">
+        <button *ngFor="let m of allModules" (click)="toggleRole(m.id)" class="btn btn-sm {{ isPicked(m.id) ? 'btn-success' : 'btn-danger' }} mb-2 me-2"><span
+            translate>{{'module.'+m.slug}}</span></button>
+      </div>
+    </div>
+    <div class="footer px-2 w-100 overflow-hidden d-flex flex-row align-items-center justify-content-center">
+      <button (click)="save()" class="btn btn-success me-2 btn-sm" translate>buttons.save</button>
+      <button (click)="cancel()" class="btn btn-secondary btn-sm" translate>buttons.cancel</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+.bdx{
+  z-index: 0;
+  top: 0px;
+  left: 0px;
+}
+
+.bg-xx{
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+  background-image: url('/assets/img/chairs.webp');
+  background-size: cover;
+}
+
+.dark {
+  z-index: -1;
+  top: 0px;
+  left: 0px;
+  background: rgba(23, 27, 31, 0.7);
+}
+
+.light {
+  z-index: -1;
+  top: 0px;
+  left: 0px;
+  background: rgba(223, 227, 231, 0.5);
+}

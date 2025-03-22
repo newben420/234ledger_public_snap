@@ -1,0 +1,11 @@
+.sc{
+  height: 3px;
+  top: 0px;
+  left: 0px;
+  z-index: 3;
+}
+
+.sa{
+  width: 0px;
+  transition: all 100ms ease;
+}

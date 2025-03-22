@@ -1,0 +1,9 @@
+<nav class="w-100 overflow-hidden">
+  <ul class="d-flex flex-row overflow-hidden flex-wrap justify-content-start w-100 justify-content-md-start">
+    <li class="fs-6 thx-4" *ngFor="let item of items; index as i">
+      <span class="item" *ngIf="!item.url"><small>{{ item.title | translate }}</small></span>
+      <a class="item fw-bold text-success" href="{{item.url}}" *ngIf="item.url"><small>{{ item.title | translate }}</small></a>
+      <small *ngIf="i < (items.length - 1)" class="sep mx-2 thx-4">></small>
+    </li>
+  </ul>
+</nav>

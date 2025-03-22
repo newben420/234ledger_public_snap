@@ -1,0 +1,84 @@
+<div class="table-container">
+  <div class="w-100 d-flex flex-row align-items-center justify-content-between">
+    <div *ngIf="config.filters" class="filters">
+      <button (click)="applyFilter(i)" *ngFor="let f of config.filters; index as i" class="btn mb-2 me-2 btn-sm {{f.active ? 'btn-success' : 'btn-secondary'}}">
+        <i class="bi bi-funnel{{f.active ? '-fill' : ''}} me-2"></i>
+        <span translate>{{f.title}}</span>
+      </button>
+    </div>
+    <button *ngIf="config.addNew" (click)="config.addNew()" class="btn btn-sm mb-2 btn-success rounded-2">
+      <i class="bi bi-plus-lg"></i>
+    </button>
+  </div>
+  <div *ngFor="let item of pageArray" class="table-page w-100 overflow-hidden">
+    <div
+      class="table-inner-page w-100 overflow-hidden"
+      *ngIf="item == currentPage"
+    >
+      <div *ngIf="config.data ? ( config.data.length > 0) : false" class="table-responsive horizon">
+        <table
+          class="overflow-x-auto table table-{{ isDark ? 'dark' : 'light'}} align-middle table-hover table-bordered"
+        >
+          <thead>
+            <tr class="">
+              <th
+                scope="col"
+                class="text-success overflow-hidden"
+                *ngFor="let lab of labelsAction(config.labels)"
+              >
+                <span translate>{{ lab.name ? lab.name : lab.column }}</span> <span class="badge thx-4" *ngIf="config.editableColumns ? (config.editableColumns.indexOf(lab.column) != -1) : false"><i class="bi bi-pen-fill"></i></span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              ng
+              *ngFor="let row of slicdByPage(item, config.data); index as i"
+            >
+              <td (dblclick)="edit(row['ind7567'], lab.column, row[lab.column] ? row[lab.column] : '')" class="overflow-hidden" *ngFor="let lab of labelsAction(config.labels)">
+                <span *ngIf="lab.column != '########' && !lab.isHtml">{{
+                  row[lab.column]
+                }}</span>
+                <span *ngIf="lab.column != '########' && lab.isHtml" [innerHTML]="row[lab.column]">
+
+                </span>
+                <div *ngIf="lab.column == '########' && config.actions">
+                  <button
+                    (click)="act.callback(act.column ? row[act.column] : '')"
+                    *ngFor="let act of config.actions"
+                    class="btn btn-sm m-1 {{
+                      act.btnClass ? act.btnClass : 'btn-success'
+                    }}"
+                  >
+                    <i *ngIf="act.icon" class="{{ act.icon }} me-2"></i>
+                    <span translate>{{ act.title }}</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div
+    class="pagination w-100 overflow-hidden d-flex flex-wrap justify-content-center"
+    *ngIf="pages > 1"
+  >
+    <a
+      (click)="changePage(page)"
+      class="fs-6 text-success fw-bold text-decoration-none me-4 mb-2"
+      *ngFor="let page of pageArray"
+    >
+      <span
+        class="{{
+          page == currentPage ? 'text-secondary fw-normal' : 'cursorx'
+        }}"
+        >{{ page }}</span
+      >
+    </a>
+  </div>
+</div>
+<div *ngIf="config.data ? (config.data.length == 0) : true" class="p-3 overflow-hidden text-secondary w-100 text-center fst-italic fs-6 fw-normal">
+  <small *ngIf="config.emptyMessage"><i class="bi bi-emoji-smile-fill me-2"></i> <span translate>{{config.emptyMessage}}</span></small>
+</div>

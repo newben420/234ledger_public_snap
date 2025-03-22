@@ -1,0 +1,83 @@
+.dash-cont {
+  z-index: 0;
+  left: 0px;
+  top: 0px;
+  transition: left 200ms ease-in;
+}
+
+.menu-btn {
+  outline: none;
+  font-size: 20px;
+  width: 50px;
+  max-width: 50px;
+  min-width: 50px;
+  display: none;
+}
+
+.fs-4x{
+  font-size: 20px;
+}
+
+.xx {
+  letter-spacing: 2.5px;
+}
+
+.dash-cont .dash-side {
+  width: 250px;
+}
+
+.dash-cont .dash-main {
+  width: calc(100% - 250px);
+}
+
+.dash-cont .dash-main .dash-header {
+  height: 50px;
+  box-shadow: 0px -1px 1px rgba(125, 125, 125, 0.1) inset;
+}
+
+.dash-cont .dash-main .dash-body {
+  height: calc(100% - 50px);
+}
+
+.profile-icon{
+  font-size: 27px;
+}
+
+@media only screen and (max-width: 755px) {
+  .dash-cont{
+    /* left: -200px; */
+    width: calc(200%) !important;
+    margin-left: 50px !important;
+    left: calc(-100%);
+  }
+  .dash-cont .dash-main .dash-header{
+    padding-left: 0px !important;
+    margin-left: 0px !important;
+  }
+  .dash-cont .dash-side {
+    width: calc(50% - 50px);
+    min-width: calc(50% - 50px);
+    max-width: calc(50% - 50px);
+  }
+  .dash-cont .dash-main {
+    width: 50%;
+    min-width: 50%;
+    max-width: 50%;
+  }
+  .menu-btn{
+    display: block;
+  }
+  .dash-cont.active{
+    left: -50px;
+  }
+}
+
+@media only screen and (min-width: 756px) {
+  .dash-cont .dash-main .dash-body {
+    overflow-y: auto !important;
+  }
+}
+
+.fw-norma{
+  font-weight: 350;
+}

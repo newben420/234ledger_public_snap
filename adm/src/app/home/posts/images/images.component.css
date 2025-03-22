@@ -1,0 +1,15 @@
+#image{
+  z-index: 10;
+  top: 0px;
+  left: 0px;
+}
+
+#image img{
+  object-fit: contain;
+}
+
+#image button{
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+}

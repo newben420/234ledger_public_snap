@@ -1,0 +1,33 @@
+<footer class="w-100 py-5 py-sm-0 overflow-hidden {{isDark ? 'thx-bg-1' : 'thx-bg-5'}} thx-4">
+  <div class="overflow-hidden container-fluid m-0 p-0">
+    <div class="row m-0 p-0">
+      <div class="col-sm-4 m-0 p-2 p-sm-4 text-center">
+        <section class="text-center d-inline-block text-sm-start">
+          <h2 class="m-0 p-0 mb-1 h5 thx-3 mt-2 mt-sm-0" translate>footer.social</h2>
+          <p *ngFor="let s of socials" class="m-0 p-0 fs-6 text-success fw-bold mb-1"><a target="_blank" rel="nofollow  noreferrer noopener" href="{{s.url}}"><i class="me-2 {{s.icon}}"></i> {{s.keyword | translate}} {{s.platform}}</a></p>
+        </section>
+      </div>
+      <div class="col-sm-4 m-0 p-2 p-sm-4 text-center">
+        <section class="text-center d-inline-block text-sm-start">
+          <h2 class="m-0 p-0 mb-1 h5 thx-3" translate>footer.quick</h2>
+          <p class="m-0 p-0 fs-6 text-success fw-bold mb-1"><a href="/" translate>header.home</a></p>
+          <p class="m-0 p-0 fs-6 text-success fw-bold mb-1"><a href="/about" translate>header.about</a></p>
+          <!-- <p class="m-0 p-0 fs-6 text-success fw-bold mb-1"><a href="/contact" translate>footer.contact</a></p> -->
+        </section>
+      </div>
+      <div class="col-sm-4 m-0 p-2 p-sm-4 text-center">
+        <section class="text-center d-inline-block text-sm-start">
+          <h2 class="m-0 p-0 mb-1 h5 thx-3 mt-2 mt-sm-0">Legal</h2>
+          <p class="m-0 p-0 fs-6 text-success fw-bold mb-1"><a href="/privacy-policy" translate>footer.privacy</a></p>
+          <p class="m-0 p-0 fs-6 text-success fw-bold mb-1"><a href="/terms-of-use" translate>footer.terms</a></p>
+        </section>
+      </div>
+    </div>
+    <div class="row m-0 p-0 mt-5 mt-sm-2">
+      <div class="col-sm-12 m-0 p-2 p-sm-4 text-center">
+        <p class="m-0 p-0 fs-6 fw-normal mb-1 thx-3">{{brand}} &copy; {{year}}</p>
+        <p class="m-0 p-0 fs-6 fw-normal mb-1 thx-3" translate>footer.all</p>
+      </div>
+    </div>
+  </div>
+</footer>

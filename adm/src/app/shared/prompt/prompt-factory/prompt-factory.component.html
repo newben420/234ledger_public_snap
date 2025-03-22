@@ -1,0 +1,256 @@
+<div
+  [@openClose]="isOpened ? 'open' : 'closed'"
+  [id]="opts.id"
+  class="prompt-container overhide"
+>
+  <div
+    id=""
+    class="prompt-inner-container w-100 flex-column h-100 d-flex align-items-center position-relative justify-content-start overhide"
+  >
+    <div
+      [@dropRise]="isOpened ? 'dropped' : 'risen'"
+      class="thx-bg-1 shadow position-absolute p-3 rounded prompt-ml mx-auto"
+    >
+      <!-- header for non alert prompts -->
+      <div
+        *ngIf="
+          ['primary', 'danger', 'success', 'warning'].indexOf(opts.inputType) ==
+          -1
+        "
+      >
+        <!-- header -->
+        <div
+          class="prompt-header d-flex flex-row align-items-start justify-content-stretch"
+        >
+          <div class="prompt-not-closebtn">
+            <h6 class="lead fw-light typeset thx-5 mb-0 pb-0 pt-0 mt-1 overhide" translate>
+              {{ opts.title }}
+            </h6>
+            <p
+              *ngIf="opts.instr"
+              class="text-secondary fs-6 typeset fw-light pt-1 mt-0 overhide mb-1 pb-0 fst-italic" translate
+            >
+              <small>{{ opts.instr }}</small>
+            </p>
+          </div>
+          <button
+            *ngIf="opts.closeButton"
+            (click)="closeButton()"
+            class="prompt-closebtn text-secondary"
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+        <!-- header separator -->
+        <hr class="thx-bg-5 thx-5 opacity-25" />
+      </div>
+      <!-- header and body for alert prompts -->
+      <div
+        *ngIf="
+          ['primary', 'danger', 'success', 'warning'].indexOf(opts.inputType) !=
+          -1
+        "
+      >
+        <!-- header -->
+        <div
+          class="prompt-header d-flex flex-row align-items-start justify-content-stretch"
+        >
+          <h6
+            class="lead fw-bold typeset mb-0 pb-0 pt-0 mt-1 overhide text-{{
+              opts.inputType
+            }}"
+          >
+            <span *ngIf="opts.inputType == 'success'" translate
+              >alerts.success</span
+            >
+            <span *ngIf="opts.inputType == 'primary'" translate
+              >alerts.info</span
+            >
+            <span *ngIf="opts.inputType == 'danger'" translate
+              >alerts.error</span
+            >
+            <span *ngIf="opts.inputType == 'warning'" translate
+              >alerts.warning</span
+            >
+          </h6>
+        </div>
+        <!-- body -->
+        <div>
+          <p
+            style="white-space: pre-wrap"
+            class="alert-message fw-light typeset thx-5 fs-6 mb-0 pb-0 mt-1"  translate
+          >
+            {{ opts.title }}
+          </p>
+        </div>
+        <!-- header separator -->
+        <hr class="thx-bg-5 thx-5 opacity-25" />
+        <!-- button -->
+        <div class="confirm-div d-flex flex-row justify-content-end w-100">
+          <button
+            (click)="respond(true)"
+            class="btn fw-light typeset  btn-{{ opts.inputType }}"
+            translate
+          >
+            buttons.ok
+          </button>
+        </div>
+      </div>
+      <!-- body start for non alert-->
+      <!-- for confirm -->
+      <div
+        *ngIf="opts.inputType == 'confirm'"
+        id=""
+        class="confirm-div d-flex flex-row justify-content-end w-100"
+      >
+        <button
+          (click)="respond(false)"
+          class="btn btn-secondary fw-light typeset border-0 me-3"
+        >
+          {{
+            opts.confirmButtons
+              ? (opts.confirmButtons[0] | translate)
+              : ("buttons.no" | translate)
+          }}
+        </button>
+        <button
+          (click)="respond(true)"
+          class="btn btn-success fw-light typeset text-light button-t1 t1-bg border-0"
+        >
+          {{
+            opts.confirmButtons
+              ? (opts.confirmButtons[1] | translate)
+              : ("buttons.yes" | translate)
+          }}
+        </button>
+      </div>
+      <form #inputForm="ngForm" (ngSubmit)="submit(!inputForm.invalid)">
+        <!-- body for normal inputs and text area and select and checkbox and file-->
+        <div
+          *ngIf="
+            [
+              'text',
+              'number',
+              'password',
+              'textarea',
+              'select',
+              'checkbox',
+              'file'
+            ].indexOf(opts.inputType) != -1
+          "
+        >
+          <input
+            *ngIf="['text', 'number', 'password'].indexOf(opts.inputType) != -1"
+            class="mb-3 typeset w-100 myInput fs-6 myInput fw-normal rounded thx-5"
+            [(ngModel)]="value"
+            [type]="opts.inputType"
+            #inputField="ngModel"
+            name="input"
+            [minlength]="opts.minlength ? opts.minlength : minInt"
+            [maxlength]="opts.maxlength ? opts.maxlength : maxInt"
+            [min]="opts.min ? opts.min : minInt"
+            [max]="opts.max ? opts.max : maxInt"
+            [required]="opts.required ? opts.required : false"
+            [pattern]="opts.pattern || pattern.generalEmpty"
+          />
+          <textarea
+            *ngIf="opts.inputType == 'textarea'"
+            [(ngModel)]="value"
+            class="mb-3 w-100 myInput fs-6 myInput fw-normal rounded thx-5 typeset"
+            name="input"
+            #inputField="ngModel"
+            [required]="opts.required ? opts.required : false"
+            [minlength]="opts.minlength ? opts.minlength : minInt"
+            [maxlength]="opts.maxlength ? opts.maxlength : maxInt"
+            [pattern]="opts.pattern || pattern.generalEmpty"
+            rows="{{ opts.rows }}"
+          >
+          </textarea>
+          <select
+            *ngIf="opts.inputType == 'select'"
+            name="input"
+            class="mb-3 w-100 myInput fs-6 myInput fw-normal rounded thx-5 typeset"
+            #inputField="ngModel"
+            [required]="opts.required ? opts.required : false"
+            [(ngModel)]="value"
+          >
+            <option class="text-dark" *ngFor="let item of opts.options" value="{{ item.value }}">
+              {{ item.name }}
+            </option>
+          </select>
+          <div
+            class="d-flex flex-row align-items-start justify-content-start mb-3"
+            *ngIf="opts.inputType == 'checkbox'"
+          >
+            <input
+              type="checkbox"
+              name="input"
+              class="css-checkbox mt-1"
+              [(ngModel)]="value"
+              #inputField
+            />
+            <p class="m-0 p-0 ms-2 fs-6 fw-light thx-5 typeset">
+              {{ opts.checboxDesc }}
+            </p>
+          </div>
+          <hr
+            class="thx-bg-5 thx-5 opacity-25"
+            *ngIf="opts.inputType == 'checkbox'"
+          />
+          <div
+            class="w-100 p-2 rounded file-h position-relative overhide d-flex flex-column align-items-center justify-content-center"
+            *ngIf="opts.inputType == 'file'"
+          >
+            <i class="bi file-icon text-secondary bi-cloud-arrow-up-fill"></i>
+            <span class="text-secondary file-ins fw-light typeset" translate
+              >ins.file_upload</span
+            >
+            <input
+              (dragleave)="uploadhandler(4, $event)"
+              (dragenter)="uploadhandler(4, $event)"
+              (dragover)="uploadhandler(4, $event)"
+              (drop)="uploadhandler(1, $event)"
+              (change)="uploadhandler(3, inputField.files)"
+              accept="{{ file_accept }}"
+              class="position-absolute h-100 w-100 file-input overhide"
+              type="file"
+              name="input"
+              #inputField
+            />
+          </div>
+        </div>
+        <!-- buttons for non confirm and non alert prompts -->
+        <div
+          *ngIf="
+            ['confirm', 'primary', 'danger', 'success', 'warning'].indexOf(
+              opts.inputType
+            ) == -1
+          "
+        >
+          <div
+            class="d-flex flex-row align-items-center justify-content-between"
+          >
+            <button
+              (click)="setCancel(true)"
+              *ngIf="opts.cancelButton"
+              class="w-100 btn btn-secondary border-0 overhide typeset fw-light"
+              translate
+            >
+              buttons.cancel
+            </button>
+            <div *ngIf="opts.cancelButton" class="w-20x"></div>
+            <button
+              (click)="setCancel(false)"
+              *ngIf="opts.inputType != 'file'"
+              class="w-100 btn btn-success button-t1 border-0 overhide typeset fw-light"
+              translate
+            >
+              buttons.submit
+            </button>
+          </div>
+        </div>
+      </form>
+      <!-- body end -->
+    </div>
+  </div>
+</div>

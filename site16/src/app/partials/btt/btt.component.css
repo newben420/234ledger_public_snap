@@ -1,0 +1,16 @@
+.btt{
+  bottom: -35px;
+  right: 10px;
+  z-index: 1;
+  height: 35px;
+  transition: all 200ms ease;
+  width: 35px;
+}
+
+.btt:hover{
+  opacity: 100 !important;
+}
+
+.btt.active{
+  bottom: 10px;
+}

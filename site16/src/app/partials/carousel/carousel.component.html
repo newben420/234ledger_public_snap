@@ -1,0 +1,16 @@
+<div
+  class="carousel w-100 p-5 position-relative d-flex flex-column align-items-center justify-content-center overflow-hidden">
+  <div class="jumbo-bg position-absolute w-100 h-100"></div>
+  <div *ngIf="isDark" class="jumbo-shade position-absolute w-100 h-100"></div>
+  <div *ngIf="!isDark" class="jumbo-light position-absolute w-100 h-100"></div>
+  <div class="px-sm-5">
+    <h1 class="m-0 p-0 display-4 text-light fw-bold text-center text-md-start"><span class="text-success">{{'carousel.informed' | translate}},</span> {{'carousel.ahead' | translate}} -
+      {{brand}}: <span class="text-success">{{'carousel.pulse' | translate}}</span></h1>
+    <p class="lead m-0 p-0  text-center text-md-start my-1 text-light fw-bold fs-6">{{'carousel.p1' | translate}} {{'carousel.p2' | translate}}</p>
+    <div class="text-center w-100 text-md-start">
+      <a *ngFor="let s of socials" href="{{s.url}}" target="_blank" rel="nofollow noreferrer noopener" class="d-inline-block fs-4 text-light text-decoration-none me-4">
+        <i class="{{s.icon}}"></i> <span class="visually-hidden"><span translate>{{s.keyword}} </span> {{s.platform}}</span>
+      </a>
+    </div>
+  </div>
+</div>

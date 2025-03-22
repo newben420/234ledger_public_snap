@@ -1,0 +1,7 @@
+.fx{
+  height: 150px;
+}
+
+.fx img{
+  object-fit: cover;
+}

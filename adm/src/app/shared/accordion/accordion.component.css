@@ -1,0 +1,12 @@
+.body{
+    overflow: hidden;
+    margin:0px;
+}
+
+.border-head{
+    border-color: rgba(155,155,155,0.2) !important;
+}
+
+.cursor-div{
+    cursor: pointer;
+}
