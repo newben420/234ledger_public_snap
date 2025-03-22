@@ -1,6 +1,6 @@
 # 234Ledger
 
-This is public snapshot of 234Ledger's source codes. 234Ledger is a news aggregator platform for the Nigerian's space. It is currently offline.
+This is public snapshot of 234Ledger's source codes. 234Ledger is a semi-automated AI-enhanced news aggregator platform for Nigeria's space. It is currently offline.
 
 ![Screenshot](./POST.png "Screenshot - Post page when site was online")
 
